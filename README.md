@@ -30,51 +30,56 @@ les fonctionnalités avancées (si vous êtes chaud) :
 
 - DUMP SQL: `pg_dump -U alexis -d test -f chemin_vers_fichier.dump`
 
-INSERT INTO `piste` (`ppiste`, `nom`, `couleur`, `etat`) VALUES
-(1, 'La Monthery', 'Verte', 'ouvert'),
-(2, 'Le Forest', 'Verte', 'ouvert'),
-(3, 'Bouticari Vert', 'Verte', 'ouvert'),
-(4, 'Jonction Basse', 'Verte', 'ouvert'),
-(5, 'Les Casses', 'Bleue', 'ouvert'),
-(6, 'Les Neiges', 'Bleue', 'ouvert'),
-(7, 'Les Atodos', 'Bleue', 'ouvert'),
-(8, 'Les Jockeys', 'Rouge', 'ouvert'),
-(9, 'Le Chamois', 'Rouge', 'ouvert'),
-(10, 'L’Écureuil', 'Rouge', 'ouvert'),
-(11, 'Le Tétras', 'Noire', 'ouvert'),
-(12, 'Le Lièvre', 'Noire', 'ouvert'),
-(13, 'As du Chamois', 'Bleue', 'ouvert'),
-(14, 'Les Lampions', 'Bleue', 'ouvert'),
-(15, 'Le Gourq', 'Bleue', 'ouvert'),
-(16, 'Les Douzeaux', 'Bleue', 'ouvert'),
-(17, 'L’Arbre', 'Bleue', 'ouvert'),
-(18, 'Bouticari Bleu', 'Bleue', 'ouvert'),
-(19, 'L’Inglin', 'Bleue', 'ouvert'),
-(20, 'Le Grand Serre', 'Bleue', 'ouvert'),
-(21, 'La Gérabio', 'Bleue', 'ouvert'),
-(22, 'La Mandarine', 'Rouge', 'ouvert'),
-(23, 'Pré Méan', 'Rouge', 'ouvert'),
-(24, 'L’Ousselat', 'Rouge', 'ouvert'),
-(25, 'Barrigart', 'Rouge', 'ouvert'),
-(37, 'La Rouge Bouticari', 'Rouge', 'ouvert'),
-(38, 'Les Sagnières', 'Rouge', 'ouvert'),
-(39, 'La Draye', 'Rouge', 'ouvert'),
-(51, 'Le Gourq', 'Bleue', 'ouvert'),
-(52, 'Les Douzeaux', 'Bleue', 'ouvert'),
-(53, 'L’Arbre', 'Bleue', 'ouvert'),
-(54, 'Bouticari Bleu', 'Bleue', 'ouvert'),
-(55, 'L’Inglin', 'Bleue', 'ouvert'),
-(56, 'Le Grand Serre', 'Bleue', 'ouvert'),
-(57, 'La Gérabio', 'Bleue', 'ouvert'),
-(58, 'Les Jockeys', 'Rouge', 'ouvert'),
-(59, 'Le Chamois', 'Rouge', 'ouvert'),
-(60, 'L’Écureuil', 'Rouge', 'ouvert'),
-(61, 'La Mandarine', 'Rouge', 'ouvert'),
-(62, 'Pré Méan', 'Rouge', 'ouvert'),
-(63, 'L’Ousselat', 'Rouge', 'ouvert'),
-(64, 'Barrigart', 'Rouge', 'ouvert'),
-(65, 'La Rouge Bouticari', 'Rouge', 'ouvert'),
-(66, 'Les Sagnières', 'Rouge', 'ouvert'),
-(67, 'La Draye', 'Rouge', 'ouvert'),
-(68, 'Le Tétras', 'Noire', 'ouvert'),
-(69, 'Le Lièvre', 'Noire', 'ouvert');
+La Monthery        Verte
+Le Forest          Verte
+Bouticari Vert     Verte
+Jonction Basse     Verte
+Les Casses         Bleue
+Les Neiges         Bleue
+Les Atodos         Bleue
+Les Jockeys        Rouge
+Le Chamois         Rouge
+L'Écureuil         Rouge
+Le Tétras          Noire
+Le Lièvre          Noire
+As du Chamois      Bleue
+Les Lampions       Bleue
+Le Gourq           Bleue
+Les Douzeaux       Bleue
+L'Arbre            Bleue
+Bouticari Bleu     Bleue
+L'Inglin           Bleue
+Le Grand Serre     Bleue
+La Gérabio         Bleue
+La Mandarine       Rouge
+Pré Méan           Rouge
+L'Ousselat         Rouge
+Barrigart          Rouge
+La Rouge Bouticari Rouge
+Les Sagnières      Rouge
+La Draye           Rouge
+Le Gourq           Bleue
+Les Douzeaux       Bleue
+L'Arbre            Bleue
+Bouticari Bleu     Bleue
+L'Inglin           Bleue
+Le Grand Serre     Bleue
+La Gérabio         Bleue
+Les Jockeys        Rouge
+Le Chamois         Rouge
+L'Écureuil         Rouge
+La Mandarine       Rouge
+Pré Méan           Rouge
+L'Ousselat         Rouge
+Barrigart          Rouge
+La Rouge Bouticari Rouge
+Les Sagnières      Rouge
+La Draye           Rouge
+Le Tétras          Noire
+Le Lièvre          Noire
+
+
+- TELESIEGES:
+
+- PISTES:
+    - G:

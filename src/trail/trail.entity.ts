@@ -28,6 +28,6 @@ export class Trail {
 
     @Column({ type: 'smallint', enum: TrailDifficulty, default: TrailDifficulty.GREEN })
     @Min(0)
-    @Max(1)
+    @Max(3)
     difficulty: TrailDifficulty;
 }
