@@ -26,14 +26,14 @@ import { DB_DATABASE, DB_PASSWORD, DB_PORT, DB_USERNAME, DB_HOST } from './const
         TypeOrmModule.forRootAsync({
             inject: [ConfigService],
             useFactory: (configService: ConfigService) => ({
-                type: 'postgres',
+                type: 'mysql',
                 host: configService.get<string>(DB_HOST),
                 port: parseInt(configService.get<string>(DB_PORT), 10),
                 username: configService.get<string>(DB_USERNAME),
                 password: configService.get<string>(DB_PASSWORD),
                 database: configService.get<string>(DB_DATABASE),
                 entities: [User, Lift, Trail],
-                synchronize: true, //! A supprimer au rendu
+                synchronize: false,
             }),
         }),
     ],
