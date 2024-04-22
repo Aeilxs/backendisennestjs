@@ -77,9 +77,3 @@ Les Sagnières      Rouge
 La Draye           Rouge
 Le Tétras          Noire
 Le Lièvre          Noire
-
-
-- TELESIEGES:
-
-- PISTES:
-    - G:

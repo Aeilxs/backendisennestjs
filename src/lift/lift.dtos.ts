@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString, Max, Min } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, Max, Min } from 'class-validator';
 import { LiftStatus } from './lift.entity';
 
 export class CreateLiftDto {
