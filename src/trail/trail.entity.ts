@@ -22,10 +22,6 @@ export class Trail {
     @Column()
     name: string;
 
-    @ManyToMany((type) => Lift)
-    @JoinTable()
-    lifts: Lift[];
-
     @Column({ type: 'smallint', enum: TrailStatus, default: TrailStatus.OFF })
     @Min(0)
     @Max(1)
