@@ -3,8 +3,8 @@ import { Max, Min } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 export enum UserRole {
-    USER = 0,
-    ADMIN = 1,
+    USER = 'ROLE_USER',
+    ADMIN = 'ROLE_ADMIN',
 }
 
 @Entity()
@@ -25,9 +25,7 @@ export class User {
     @Exclude()
     password: string;
 
-    @Column({ type: 'smallint', enum: UserRole, default: UserRole.USER })
-    @Min(0)
-    @Max(1)
+    @Column({ enum: UserRole, default: UserRole.USER })
     @Exclude()
     role: UserRole;
 

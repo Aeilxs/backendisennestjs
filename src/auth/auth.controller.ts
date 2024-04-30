@@ -3,6 +3,9 @@ import { AuthService } from './auth.service';
 import { SignInDto } from './auth.dtos';
 import { AuthGuard } from './auth.guard';
 import { AuthRequest } from 'src/types';
+import { RolesGuard } from './roles.guard';
+import { UserRole } from 'src/user/user.entity';
+import { Authorize } from './authorize.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -14,7 +17,8 @@ export class AuthController {
         return this.authService.signIn(dto.email, dto.password);
     }
 
-    @UseGuards(AuthGuard)
+    @UseGuards(AuthGuard, RolesGuard)
+    @Authorize([UserRole.USER, UserRole.ADMIN])
     @Get('profile')
     getProfile(@Request() req: AuthRequest) {
         return req.user;

@@ -32,7 +32,7 @@ export class Trail {
     @Max(3)
     difficulty: TrailDifficulty;
 
-    @ManyToMany(() => Lift, (lift) => lift.trails)
+    @ManyToMany(() => Lift, (lift) => lift.trails, { cascade: true, onDelete: 'CASCADE' })
     @JoinTable()
     lifts: Trail[];
 }

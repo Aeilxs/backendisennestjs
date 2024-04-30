@@ -2,7 +2,7 @@ import { ConflictException, Injectable, NotFoundException } from '@nestjs/common
 import { Lift } from './lift.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateLiftDto, UpdateLiftDto } from './lift.dtos';
+import { CreateLiftDto, UpdateLiftDto, UpdateLiftOption } from './lift.dtos';
 import { TrailService } from 'src/trail/trail.service';
 
 @Injectable()
@@ -29,10 +29,14 @@ export class LiftService {
         const lift = lifts.find((l) => l.id === id);
         if (!lift) throw new NotFoundException(`La remontée n'existe pas.`);
 
-        if (dto.idTrail) {
-            const trail = await this.trailService.find(dto.idTrail);
-            if (!trail) throw new NotFoundException(`La piste avec l'id ${dto.idTrail} n'existe pas.`);
-            lift.trails = [...lift.trails, trail];
+        if (dto.opt) {
+            const trail = await this.trailService.find(dto.trailId);
+            if (!trail) throw new NotFoundException(`La piste avec l'id ${dto.trailId} n'existe pas.`);
+
+            // prettier-ignore
+            dto.opt === UpdateLiftOption.ADD ?
+                lift.trails = [...lift.trails, trail] :
+                lift.trails.splice(lift.trails.findIndex((t) => t.id === dto.trailId), 1);
         }
 
         Object.assign(lift, dto);

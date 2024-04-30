@@ -4,7 +4,7 @@ import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { User } from './user.entity';
+import { User, UserRole } from './user.entity';
 import { CreateUserDto, UpdateUserDto } from './user.dtos';
 import { BCRYPT_ROUNDS } from 'src/constants';
 
@@ -39,5 +39,18 @@ export class UserService {
 
     async remove(id: number): Promise<void> {
         await this.userRepo.delete(id);
+    }
+
+    async createAdmin(): Promise<(CreateUserDto & User) | null> {
+        const admin = await this.userRepo.findOneBy({ email: 'admin@admin.com' });
+        if (admin) return null;
+
+        return this.userRepo.save({
+            firstname: 'admin',
+            lastname: 'admin',
+            role: UserRole.ADMIN,
+            password: await bcrypt.hash('admin', BCRYPT_ROUNDS),
+            email: 'admin@admin.com',
+        } as CreateUserDto);
     }
 }
