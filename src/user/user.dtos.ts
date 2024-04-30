@@ -1,5 +1,5 @@
 import { IsEmail, IsEnum, IsNotEmpty, IsOptional, MinLength } from 'class-validator';
-import { UserRole } from './user.entity';
+import { UserRole } from 'src/types';
 
 export class CreateUserDto {
     @IsNotEmpty({ message: 'Le prénom ne doit pas être vide' })

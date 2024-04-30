@@ -1,11 +1,6 @@
 import { Exclude } from 'class-transformer';
-import { Max, Min } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-
-export enum UserRole {
-    USER = 'ROLE_USER',
-    ADMIN = 'ROLE_ADMIN',
-}
+import { UserRole } from 'src/types';
 
 @Entity()
 export class User {

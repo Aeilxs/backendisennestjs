@@ -1,24 +1,50 @@
-import { HttpStatus } from '@nestjs/common';
+/**
+ * REQ / JWT
+ */
 
-export enum Severity {
-    SUCCESS = 'success',
-    INFO = 'info',
-    WARN = 'warning',
-    ERROR = 'error',
+export interface JwtPayload {
+    id: number;
+    email: string;
+    role: string;
+    iat: number;
+    exp: number;
 }
 
-export interface Resp<T> {
-    severity: Severity;
-    message: string;
-    httpCode: HttpStatus;
-    data?: T;
+export interface JwtRequest extends Request {
+    user: JwtPayload;
 }
 
-export interface AuthRequest extends Request {
-    user: {
-        id: number;
-        email: string;
-        iat: number;
-        exp: number;
-    };
+/**
+ * ROLES
+ */
+
+export enum UserRole {
+    USER = 'ROLE_USER',
+    ADMIN = 'ROLE_ADMIN',
+}
+
+/**
+ * ENTITIES ENUM
+ */
+
+export enum UpdateLiftOption {
+    ADD = 'ADD',
+    RMV = 'RMV',
+}
+
+export enum LiftStatus {
+    OFF = 0,
+    ON = 1,
+}
+
+export enum TrailStatus {
+    OFF = 0,
+    ON = 1,
+}
+
+export enum TrailDifficulty {
+    GREEN = 0,
+    BLUE = 1,
+    RED = 2,
+    BLACK = 3,
 }

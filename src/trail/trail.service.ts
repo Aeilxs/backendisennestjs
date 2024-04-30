@@ -3,8 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Trail } from './trail.entity';
 import { Repository } from 'typeorm';
 import { CreateTrailDto, UpdateTrailDto } from './trail.dtos';
-import { JwtPayload } from 'src/constants';
-import { UserRole } from 'src/user/user.entity';
+import { JwtPayload } from 'src/types';
+import { UserRole } from 'src/types';
 
 @Injectable()
 export class TrailService {

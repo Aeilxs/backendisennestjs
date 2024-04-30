@@ -3,10 +3,11 @@ import * as bcrypt from 'bcrypt';
 import { ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-
-import { User, UserRole } from './user.entity';
+import { UserRole } from 'src/types';
+import { User } from './user.entity';
 import { CreateUserDto, UpdateUserDto } from './user.dtos';
-import { BCRYPT_ROUNDS, JwtPayload } from 'src/constants';
+import { BCRYPT_ROUNDS } from 'src/constants';
+import { JwtPayload } from 'src/types';
 
 @Injectable()
 export class UserService {

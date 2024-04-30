@@ -18,8 +18,8 @@ import { CreateTrailDto, UpdateTrailDto } from './trail.dtos';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { RolesGuard } from 'src/auth/roles.guard';
 import { Authorize } from 'src/auth/authorize.decorator';
-import { UserRole } from 'src/user/user.entity';
-import { JwtRequest } from 'src/constants';
+import { UserRole } from 'src/types';
+import { JwtRequest } from 'src/types';
 
 @UseGuards(AuthGuard, RolesGuard)
 @UseInterceptors(ClassSerializerInterceptor)

@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsNumber, IsOptional, IsString, Max, Min } from 'class-validator';
-import { TrailDifficulty, TrailStatus } from './trail.entity';
+import { TrailDifficulty, TrailStatus } from 'src/types';
 
 export class CreateTrailDto {
     @IsNotEmpty({ message: 'Le nom ne doit pas être vide' })

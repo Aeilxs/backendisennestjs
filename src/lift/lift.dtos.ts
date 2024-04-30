@@ -1,10 +1,5 @@
 import { IsNotEmpty, IsNumber, IsOptional, Max, Min } from 'class-validator';
-import { LiftStatus } from './lift.entity';
-
-export enum UpdateLiftOption {
-    ADD = 'ADD',
-    RMV = 'RMV',
-}
+import { LiftStatus, UpdateLiftOption } from 'src/types';
 
 export class CreateLiftDto {
     @IsNotEmpty()

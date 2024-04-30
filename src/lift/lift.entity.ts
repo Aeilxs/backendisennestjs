@@ -1,11 +1,7 @@
 import { Max, Min } from 'class-validator';
 import { Trail } from 'src/trail/trail.entity';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
-
-export enum LiftStatus {
-    OFF = 0,
-    ON = 1,
-}
+import { LiftStatus } from 'src/types';
 
 @Entity()
 export class Lift {

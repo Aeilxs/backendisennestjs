@@ -14,12 +14,13 @@ import {
     Req,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { User, UserRole } from './user.entity';
+import { User } from './user.entity';
 import { CreateUserDto, UpdateUserDto } from './user.dtos';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { RolesGuard } from 'src/auth/roles.guard';
 import { Authorize } from 'src/auth/authorize.decorator';
-import { JwtRequest } from 'src/constants';
+import { JwtRequest } from 'src/types';
+import { UserRole } from 'src/types';
 
 @UseInterceptors(ClassSerializerInterceptor)
 @Controller('users')

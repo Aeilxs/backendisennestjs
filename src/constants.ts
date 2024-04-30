@@ -14,15 +14,3 @@ export const JWT_SECRET = 'JWT_SECRET';
  */
 
 export const BCRYPT_ROUNDS = 10;
-
-export interface JwtPayload {
-    id: number;
-    email: string;
-    role: string;
-    iat: number;
-    exp: number;
-}
-
-export interface JwtRequest extends Request {
-    user: JwtPayload;
-}

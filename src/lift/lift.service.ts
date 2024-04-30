@@ -2,10 +2,9 @@ import { ConflictException, Injectable, NotFoundException } from '@nestjs/common
 import { Lift } from './lift.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateLiftDto, UpdateLiftDto, UpdateLiftOption } from './lift.dtos';
+import { CreateLiftDto, UpdateLiftDto } from './lift.dtos';
 import { TrailService } from 'src/trail/trail.service';
-import { JwtPayload } from 'src/constants';
-import { UserRole } from 'src/user/user.entity';
+import { JwtPayload, UserRole, UpdateLiftOption } from 'src/types';
 
 @Injectable()
 export class LiftService {
