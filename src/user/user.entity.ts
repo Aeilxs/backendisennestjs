@@ -21,7 +21,6 @@ export class User {
     password: string;
 
     @Column({ enum: UserRole, default: UserRole.USER })
-    @Exclude()
     role: UserRole;
 
     constructor(partial: Partial<User>) {
