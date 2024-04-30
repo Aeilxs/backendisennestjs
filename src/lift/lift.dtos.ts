@@ -13,7 +13,7 @@ export class UpdateLiftDto {
 
     @IsOptional()
     @IsNumber()
-    id_trail: number;
+    idTrail: number;
 
     @IsNumber()
     @Min(0, { message: 'Le statut doit être compris entre 0 et 1' })
