@@ -36,9 +36,9 @@ CREATE TABLE `lift` (
 DROP TABLE IF EXISTS `lift_trails_trail`;
 CREATE TABLE `lift_trails_trail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_trail` int(11) NOT NULL,
-  `id_lift` int(11) NOT NULL,
+  `trailId` int(11) NOT NULL,
+  `liftId` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`id_trail`) REFERENCES `trail` (`id`),
-  FOREIGN KEY (`id_lift`) REFERENCES `lift` (`id`)
+  FOREIGN KEY (`trailId`) REFERENCES `trail` (`id`),
+  FOREIGN KEY (`liftId`) REFERENCES `lift` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
