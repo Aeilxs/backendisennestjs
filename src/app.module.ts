@@ -33,7 +33,7 @@ import { DB_DATABASE, DB_PASSWORD, DB_PORT, DB_USERNAME, DB_HOST } from './const
                 password: configService.get<string>(DB_PASSWORD),
                 database: configService.get<string>(DB_DATABASE),
                 entities: [User, Lift, Trail],
-                synchronize: false,
+                synchronize: true,
             }),
         }),
     ],

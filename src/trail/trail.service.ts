@@ -12,6 +12,10 @@ export class TrailService {
         return this.liftRepo.find();
     }
 
+    find(id: number): Promise<Trail> {
+        return this.liftRepo.findOneBy({ id });
+    }
+
     async create(dto: CreateTrailDto) {
         const trail = await this.liftRepo.findOneBy({ name: dto.name });
         if (trail && trail.name === dto.name) throw new ConflictException('Piste déjà en BDD.');

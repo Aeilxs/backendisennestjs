@@ -8,5 +8,6 @@ import { Trail } from './trail.entity';
     imports: [TypeOrmModule.forFeature([Trail])],
     providers: [TrailService],
     controllers: [TrailController],
+    exports: [TrailService],
 })
 export class TrailModule {}

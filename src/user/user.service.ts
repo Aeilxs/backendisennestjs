@@ -27,7 +27,6 @@ export class UserService {
         }
 
         const hash = await bcrypt.hash(dto.password, BCRYPT_ROUNDS);
-        console.log(dto.password);
         return this.userRepo.save({ ...dto, password: hash });
     }
 

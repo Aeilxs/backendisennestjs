@@ -19,4 +19,8 @@ export class Lift {
     @Min(0)
     @Max(1)
     status: LiftStatus;
+
+    @ManyToMany(() => Trail, (trail) => trail.lifts)
+    @JoinTable()
+    trails: Trail[];
 }

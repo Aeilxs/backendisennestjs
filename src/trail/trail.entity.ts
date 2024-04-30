@@ -31,4 +31,8 @@ export class Trail {
     @Min(0)
     @Max(3)
     difficulty: TrailDifficulty;
+
+    @ManyToMany(() => Lift, (lift) => lift.trails)
+    @JoinTable()
+    lifts: Trail[];
 }

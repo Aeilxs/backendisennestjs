@@ -9,6 +9,7 @@ import {
     ParseIntPipe,
     UseInterceptors,
     ClassSerializerInterceptor,
+    HttpCode,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from './user.entity';
@@ -34,6 +35,7 @@ export class UserController {
         return this.userService.update(id, dto);
     }
 
+    @HttpCode(200)
     @Delete(':id')
     async delete(@Param('id', ParseIntPipe) id: number): Promise<void> {
         return this.userService.remove(id);

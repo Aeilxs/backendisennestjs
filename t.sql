@@ -32,4 +32,13 @@ CREATE TABLE `lift` (
   `status` smallint(6) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
--- 2024-04-22 13:51:48
+
+DROP TABLE IF EXISTS `lift_trails_trail`;
+CREATE TABLE `lift_trails_trail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_trail` int(11) NOT NULL,
+  `id_lift` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`id_trail`) REFERENCES `trail` (`id`),
+  FOREIGN KEY (`id_lift`) REFERENCES `lift` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
