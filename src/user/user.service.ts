@@ -1,12 +1,12 @@
 import * as bcrypt from 'bcrypt';
 
-import { ConflictException, Injectable } from '@nestjs/common';
+import { ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { User, UserRole } from './user.entity';
 import { CreateUserDto, UpdateUserDto } from './user.dtos';
-import { BCRYPT_ROUNDS } from 'src/constants';
+import { BCRYPT_ROUNDS, JwtPayload } from 'src/constants';
 
 @Injectable()
 export class UserService {
@@ -26,13 +26,20 @@ export class UserService {
             throw new ConflictException('Email already in use');
         }
 
-        const hash = await bcrypt.hash(dto.password, BCRYPT_ROUNDS);
-        return this.userRepo.save({ ...dto, password: hash });
+        return this.userRepo.save({ ...dto, password: await bcrypt.hash(dto.password, BCRYPT_ROUNDS) });
     }
 
-    async update(id: number, dto: UpdateUserDto): Promise<User | null> {
+    async update(id: number, dto: UpdateUserDto, user_jwt: JwtPayload): Promise<User | null> {
         const user = await this.userRepo.findOneBy({ id });
         if (!user) return null;
+        if (user_jwt.role === UserRole.USER) {
+            if (user_jwt.id !== user.id) {
+                throw new UnauthorizedException('Vous ne pouvez pas modifier un utilisateur autre que vous même!');
+            }
+
+            delete dto.role;
+            if (dto.password) dto.password = await bcrypt.hash(dto.password, BCRYPT_ROUNDS);
+        }
         Object.assign(user, dto);
         return this.userRepo.save(user);
     }

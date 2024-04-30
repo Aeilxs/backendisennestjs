@@ -10,10 +10,16 @@ import {
     UseInterceptors,
     ClassSerializerInterceptor,
     HttpCode,
+    UseGuards,
+    Req,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { User } from './user.entity';
+import { User, UserRole } from './user.entity';
 import { CreateUserDto, UpdateUserDto } from './user.dtos';
+import { AuthGuard } from 'src/auth/auth.guard';
+import { RolesGuard } from 'src/auth/roles.guard';
+import { Authorize } from 'src/auth/authorize.decorator';
+import { JwtRequest } from 'src/constants';
 
 @UseInterceptors(ClassSerializerInterceptor)
 @Controller('users')
@@ -21,6 +27,8 @@ export class UserController {
     constructor(private readonly userService: UserService) {}
 
     @Get()
+    @UseGuards(AuthGuard, RolesGuard)
+    @Authorize([UserRole.ADMIN])
     async findAll(): Promise<User[]> {
         return await this.userService.findAll();
     }
@@ -31,12 +39,20 @@ export class UserController {
     }
 
     @Put(':id')
-    async update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateUserDto): Promise<User> {
-        return this.userService.update(id, dto);
+    @UseGuards(AuthGuard, RolesGuard)
+    @Authorize([UserRole.ADMIN, UserRole.USER])
+    async update(
+        @Param('id', ParseIntPipe) id: number,
+        @Body() dto: UpdateUserDto,
+        @Req() req: JwtRequest,
+    ): Promise<User> {
+        return this.userService.update(id, dto, req.user);
     }
 
     @HttpCode(200)
     @Delete(':id')
+    @UseGuards(AuthGuard, RolesGuard)
+    @Authorize([UserRole.ADMIN])
     async delete(@Param('id', ParseIntPipe) id: number): Promise<void> {
         return this.userService.remove(id);
     }

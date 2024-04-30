@@ -4,11 +4,12 @@ import { LiftService } from './lift.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Lift } from './lift.entity';
 import { TrailModule } from 'src/trail/trail.module';
-import { TrailService } from 'src/trail/trail.service';
+import { AuthGuard } from 'src/auth/auth.guard';
+import { JwtService } from '@nestjs/jwt';
 
 @Module({
     imports: [TrailModule, TypeOrmModule.forFeature([Lift])],
     controllers: [LiftController],
-    providers: [LiftService],
+    providers: [LiftService, AuthGuard, JwtService],
 })
 export class LiftModule {}

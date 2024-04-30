@@ -1,23 +1,34 @@
-import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
+import { IsEmail, IsEnum, IsNotEmpty, IsOptional, MinLength } from 'class-validator';
+import { UserRole } from './user.entity';
 
 export class CreateUserDto {
     @IsNotEmpty({ message: 'Le prénom ne doit pas être vide' })
-    readonly firstname: string;
+    firstname: string;
 
     @IsNotEmpty({ message: 'Le nom ne doit pas être vide' })
-    readonly lastname: string;
+    lastname: string;
 
-    @MinLength(8, { message: 'Le moit de passe doit contenir au moins 8 caractères' })
-    readonly password: string;
+    @MinLength(8, { message: 'Le mot de passe doit contenir au moins 8 caractères' })
+    password: string;
 
     @IsEmail()
-    readonly email: string;
+    email: string;
 }
 
 export class UpdateUserDto {
+    @IsOptional()
     @IsNotEmpty({ message: 'Le prénom ne doit pas être vide' })
-    readonly firstname: string;
+    firstname: string;
 
+    @IsOptional()
     @IsNotEmpty({ message: 'Le nom ne doit pas être vide' })
-    readonly lastname: string;
+    lastname: string;
+
+    @IsOptional()
+    @MinLength(8, { message: 'Le mot de passe doit contenir au moins 8 caractères' })
+    password: string;
+
+    @IsOptional()
+    @IsEnum(UserRole, { message: "Doit respecter le format 'ROLE_USER' | 'ROLE_ADMIN'" })
+    role: UserRole;
 }

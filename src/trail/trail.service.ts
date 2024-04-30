@@ -3,6 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Trail } from './trail.entity';
 import { Repository } from 'typeorm';
 import { CreateTrailDto, UpdateTrailDto } from './trail.dtos';
+import { JwtPayload } from 'src/constants';
+import { UserRole } from 'src/user/user.entity';
 
 @Injectable()
 export class TrailService {
@@ -22,9 +24,15 @@ export class TrailService {
         return await this.liftRepo.save(dto);
     }
 
-    async update(id: number, dto: UpdateTrailDto) {
+    async update(id: number, dto: UpdateTrailDto, user: JwtPayload) {
         const trail = await this.liftRepo.findOneBy({ id });
         if (!trail) return null;
+
+        if (user.role === UserRole.USER) {
+            delete dto.name;
+            delete dto.difficulty;
+        }
+
         Object.assign(trail, dto);
         return await this.liftRepo.save(trail);
     }

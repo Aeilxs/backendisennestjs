@@ -4,6 +4,8 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateLiftDto, UpdateLiftDto, UpdateLiftOption } from './lift.dtos';
 import { TrailService } from 'src/trail/trail.service';
+import { JwtPayload } from 'src/constants';
+import { UserRole } from 'src/user/user.entity';
 
 @Injectable()
 export class LiftService {
@@ -22,14 +24,19 @@ export class LiftService {
         return this.liftRepo.save(dto);
     }
 
-    async update(id: number, dto: UpdateLiftDto): Promise<Lift | null> {
+    async update(id: number, dto: UpdateLiftDto, user: JwtPayload): Promise<Lift | null> {
         const lifts = await this.findAll();
         if (!lifts) throw new NotFoundException('Pas de remontée en BDD.');
-
         const lift = lifts.find((l) => l.id === id);
         if (!lift) throw new NotFoundException(`La remontée n'existe pas.`);
 
-        if (dto.opt) {
+        if (user.role === UserRole.USER) {
+            delete dto.name;
+            delete dto.opt;
+            delete dto.trailId;
+        }
+
+        if (user.role === UserRole.ADMIN && dto.opt) {
             const trail = await this.trailService.find(dto.trailId);
             if (!trail) throw new NotFoundException(`La piste avec l'id ${dto.trailId} n'existe pas.`);
 
