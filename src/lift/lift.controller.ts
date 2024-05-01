@@ -50,6 +50,7 @@ export class LiftController {
     }
 
     @Delete(':id')
+    @Authorize([UserRole.ADMIN])
     async remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
         return this.liftService.remove(id);
     }

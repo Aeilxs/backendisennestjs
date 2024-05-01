@@ -37,10 +37,10 @@ export class UserService {
             if (user_jwt.id !== user.id) {
                 throw new UnauthorizedException('Vous ne pouvez pas modifier un utilisateur autre que vous même!');
             }
-
             delete dto.role;
-            if (dto.password) dto.password = await bcrypt.hash(dto.password, BCRYPT_ROUNDS);
         }
+
+        if (dto.password) dto.password = await bcrypt.hash(dto.password, BCRYPT_ROUNDS);
         Object.assign(user, dto);
         return this.userRepo.save(user);
     }
