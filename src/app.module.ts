@@ -10,8 +10,10 @@ import { UserModule } from './user/user.module';
 import { User } from './user/user.entity';
 import { Lift } from './lift/lift.entity';
 import { Trail } from './trail/trail.entity';
+import { Comment } from './comment/comment.entity';
 
 import { DB_DATABASE, DB_PASSWORD, DB_PORT, DB_USERNAME, DB_HOST } from './constants';
+import { CommentModule } from './comment/comment.module';
 
 @Module({
     imports: [
@@ -19,6 +21,7 @@ import { DB_DATABASE, DB_PASSWORD, DB_PORT, DB_USERNAME, DB_HOST } from './const
         AuthModule,
         LiftModule,
         TrailModule,
+        CommentModule,
         ConfigModule.forRoot({
             envFilePath: '.env',
             isGlobal: true,
@@ -32,12 +35,10 @@ import { DB_DATABASE, DB_PASSWORD, DB_PORT, DB_USERNAME, DB_HOST } from './const
                 username: configService.get<string>(DB_USERNAME),
                 password: configService.get<string>(DB_PASSWORD),
                 database: configService.get<string>(DB_DATABASE),
-                entities: [User, Lift, Trail],
+                entities: [User, Lift, Trail, Comment],
                 synchronize: false,
             }),
         }),
     ],
-    controllers: [],
-    providers: [],
 })
 export class AppModule {}
