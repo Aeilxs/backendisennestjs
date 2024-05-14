@@ -1,6 +1,6 @@
 import { Trail } from 'src/trail/trail.entity';
 import { User } from 'src/user/user.entity';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, JoinTable, ManyToOne } from 'typeorm';
 
 @Entity()
 export class Comment {
@@ -13,7 +13,7 @@ export class Comment {
     @Column()
     content: string;
 
-    @ManyToMany(() => Trail, (t) => t.comments)
+    @ManyToOne(() => Trail, (t) => t.comments)
     @JoinTable()
-    trails: Trail[];
+    trail: Trail;
 }

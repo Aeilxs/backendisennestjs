@@ -11,5 +11,6 @@ import { JwtService } from '@nestjs/jwt';
     imports: [TrailModule, TypeOrmModule.forFeature([Lift])],
     controllers: [LiftController],
     providers: [LiftService, AuthGuard, JwtService],
+    exports: [LiftService],
 })
 export class LiftModule {}

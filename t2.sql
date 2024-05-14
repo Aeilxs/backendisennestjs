@@ -11,17 +11,17 @@ CREATE TABLE `lift` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
-DROP TABLE IF EXISTS `comment_trails_trail`;
-CREATE TABLE `comment_trails_trail` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `commentId` int(11) NOT NULL,
-  `trailId` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `commentId` (`commentId`),
-  KEY `trailId` (`trailId`),
-  FOREIGN KEY (`commentId`) REFERENCES `comment` (`id`) ON DELETE CASCADE,
-  FOREIGN KEY (`trailId`) REFERENCES `trail` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+-- DROP TABLE IF EXISTS `comment_trails_trail`;
+-- CREATE TABLE `comment_trails_trail` (
+--   `id` int(11) NOT NULL AUTO_INCREMENT,
+--   `commentId` int(11) NOT NULL,
+--   `trailId` int(11) NOT NULL,
+--   PRIMARY KEY (`id`),
+--   KEY `commentId` (`commentId`),
+--   KEY `trailId` (`trailId`),
+--   FOREIGN KEY (`commentId`) REFERENCES `comment` (`id`) ON DELETE CASCADE,
+--   FOREIGN KEY (`trailId`) REFERENCES `trail` (`id`) ON DELETE CASCADE
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
@@ -132,3 +132,16 @@ INSERT INTO `lift_trails_trail` (`id`, `trailId`, `liftId`) VALUES
 (30,	17,	11),
 (31,	18,	11),
 (32,	16,	11);
+
+INSERT INTO `lift` (`id`, `name`, `status`) VALUES
+(1,	'La Troïka',	0),
+(2,	'Les Torres',	0),
+(3,	'La Burge',	0),
+(4,	'Les Amoureux',	0),
+(5,	'Le Moulin',	0),
+(6,	'Le Beauregard I',	0),
+(7,	'Le Beauregard II',	0),
+(8,	'Ste Marie Madeleine',	0),
+(9,	'Les Cassettes',	0),
+(10,	'Bouticari',	0),
+(11,	'Le Grand Serre',	0);

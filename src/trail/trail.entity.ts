@@ -1,6 +1,6 @@
 import { Max, Min } from 'class-validator';
 import { Lift } from 'src/lift/lift.entity';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, OneToMany } from 'typeorm';
 import { TrailStatus, TrailDifficulty } from 'src/types';
 import { Comment } from 'src/comment/comment.entity';
 
@@ -26,7 +26,7 @@ export class Trail {
     @JoinTable()
     lifts: Trail[];
 
-    @ManyToMany(() => Comment, (cmt) => cmt.trails, { cascade: true, onDelete: 'CASCADE' })
+    @OneToMany(() => Comment, (cmt) => cmt.trail, { cascade: true, onDelete: 'CASCADE' })
     @JoinTable()
     comments: Comment[];
 }

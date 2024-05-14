@@ -11,7 +11,7 @@ export class TrailService {
     constructor(@InjectRepository(Trail) private liftRepo: Repository<Trail>) {}
 
     findAll(): Promise<Trail[]> {
-        return this.liftRepo.find();
+        return this.liftRepo.find({ relations: { comments: true } });
     }
 
     find(id: number): Promise<Trail> {

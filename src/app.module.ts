@@ -6,6 +6,7 @@ import { LiftModule } from './lift/lift.module';
 import { AuthModule } from './auth/auth.module';
 import { TrailModule } from './trail/trail.module';
 import { UserModule } from './user/user.module';
+import { CommentModule } from './comment/comment.module';
 
 import { User } from './user/user.entity';
 import { Lift } from './lift/lift.entity';
@@ -13,7 +14,6 @@ import { Trail } from './trail/trail.entity';
 import { Comment } from './comment/comment.entity';
 
 import { DB_DATABASE, DB_PASSWORD, DB_PORT, DB_USERNAME, DB_HOST } from './constants';
-import { CommentModule } from './comment/comment.module';
 
 @Module({
     imports: [
