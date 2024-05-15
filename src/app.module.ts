@@ -13,7 +13,8 @@ import { Lift } from './lift/lift.entity';
 import { Trail } from './trail/trail.entity';
 import { Comment } from './comment/comment.entity';
 
-import { DB_DATABASE, DB_PASSWORD, DB_PORT, DB_USERNAME, DB_HOST } from './constants';
+import { DB_NAME, DB_PASSWORD, DB_PORT, DB_USERNAME, DB_HOST } from './constants';
+import { ChatModule } from './chat/chat.module';
 
 @Module({
     imports: [
@@ -22,6 +23,7 @@ import { DB_DATABASE, DB_PASSWORD, DB_PORT, DB_USERNAME, DB_HOST } from './const
         LiftModule,
         TrailModule,
         CommentModule,
+        ChatModule,
         ConfigModule.forRoot({
             envFilePath: '.env',
             isGlobal: true,
@@ -34,7 +36,7 @@ import { DB_DATABASE, DB_PASSWORD, DB_PORT, DB_USERNAME, DB_HOST } from './const
                 port: parseInt(configService.get<string>(DB_PORT), 10),
                 username: configService.get<string>(DB_USERNAME),
                 password: configService.get<string>(DB_PASSWORD),
-                database: configService.get<string>(DB_DATABASE),
+                database: configService.get<string>(DB_NAME),
                 entities: [User, Lift, Trail, Comment],
                 synchronize: false,
             }),
