@@ -4,8 +4,11 @@ import {
     Controller,
     Delete,
     Get,
+    Param,
+    ParseIntPipe,
     Post,
     Put,
+    Req,
     Request,
     UseGuards,
     UseInterceptors,
@@ -15,17 +18,14 @@ import { AuthGuard } from 'src/auth/auth.guard';
 import { RolesGuard } from 'src/auth/roles.guard';
 import { JwtRequest, UserRole } from 'src/types';
 import { Authorize } from 'src/auth/authorize.decorator';
-import { CreateCommentDto } from './comment.dtos';
+import { CreateCommentDto, UpdateCommentDto } from './comment.dtos';
 
 @UseGuards(AuthGuard, RolesGuard)
+@Authorize([UserRole.ADMIN, UserRole.USER])
 @UseInterceptors(ClassSerializerInterceptor)
 @Controller('comments')
 export class CommentController {
     constructor(private commentService: CommentService) {}
-
-    @Get()
-    @Authorize([UserRole.ADMIN, UserRole.USER])
-    find() {}
 
     @Post()
     create(@Request() req: JwtRequest, @Body() dto: CreateCommentDto) {
@@ -33,8 +33,12 @@ export class CommentController {
     }
 
     @Put(':id')
-    update() {}
+    update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateCommentDto, @Req() req: JwtRequest) {
+        this.commentService.update(id, req.user, dto);
+    }
 
     @Delete(':id')
-    remove() {}
+    remove(@Param('id', ParseIntPipe) id: number, @Req() req: JwtRequest) {
+        this.commentService.delete(id, req.user);
+    }
 }

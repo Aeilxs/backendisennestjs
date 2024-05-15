@@ -14,7 +14,13 @@ export class LiftService {
     ) {}
 
     async findAll(): Promise<Lift[] | void> {
-        return await this.liftRepo.find({ relations: { trails: true } });
+        return await this.liftRepo.find({
+            relations: {
+                trails: {
+                    comments: { user: true },
+                },
+            },
+        });
     }
 
     async create(dto: CreateLiftDto): Promise<CreateLiftDto & Lift> {

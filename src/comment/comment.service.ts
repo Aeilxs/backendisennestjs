@@ -5,7 +5,7 @@ import { UserService } from 'src/user/user.service';
 import { Repository } from 'typeorm';
 import { TrailService } from 'src/trail/trail.service';
 import { JwtPayload, UserRole } from 'src/types';
-import { CreateCommentDto } from './comment.dtos';
+import { CreateCommentDto, UpdateCommentDto } from './comment.dtos';
 
 @Injectable()
 export class CommentService {
@@ -19,10 +19,6 @@ export class CommentService {
         const trail = await this.trailService.find(dto.trailId);
         const user = await this.userService.findOne(u.email);
 
-        if (user.role === UserRole.USER && user.id != u.id) {
-            throw new UnauthorizedException('Interdit de modifier un autre commentaire que le votre !');
-        }
-
         await this.commentRepo.save({
             user: user,
             trail: trail,
@@ -30,7 +26,31 @@ export class CommentService {
         } as unknown);
     }
 
-    async delete(id: number) {
-        return await this.commentRepo.delete({ id });
+    async update(id: number, u: JwtPayload, dto: UpdateCommentDto) {
+        const user = await this.userService.findOne(u.email);
+        const comment = await this.commentRepo.findOne({
+            where: { id },
+            relations: ['user'],
+        });
+
+        if (user.role === UserRole.USER && comment.user.id != u.id) {
+            return new UnauthorizedException('Interdit de modifier un autre commentaire que le votre !');
+        }
+
+        comment.content = dto.content;
+        return await this.commentRepo.save(comment);
+    }
+
+    async delete(id: number, u: JwtPayload) {
+        const comment = await this.commentRepo.findOne({
+            where: { id },
+            relations: ['user'],
+        });
+
+        if (u.role === UserRole.USER && comment.user.id != u.id) {
+            return new UnauthorizedException('Interdit de supprimer un autre commentaire que le votre !');
+        }
+
+        return await this.commentRepo.delete(id);
     }
 }

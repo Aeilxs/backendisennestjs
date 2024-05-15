@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateCommentDto {
-    @IsNotEmpty({ message: 'Le nom ne doit pas être vide' })
+    @IsNotEmpty({ message: 'Le commentaire ne doit pas être vide' })
     @IsString()
     content: string;
 
@@ -10,4 +10,8 @@ export class CreateCommentDto {
     trailId: number;
 }
 
-export class UpdateCommentDto extends CreateCommentDto {}
+export class UpdateCommentDto {
+    @IsNotEmpty({ message: 'Le commentaire ne doit pas être vide' })
+    @IsString()
+    content: string;
+}
